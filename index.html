@@ -10,15 +10,15 @@
     --green: #2D7A4F;
     --green-light: #E8F5EE;
     --amber: #E8971A;
-    --amber-light: #FEF9ED;
+    --amber-light: #FEF3DC;
     --red: #D94040;
     --red-light: #FDEAEA;
     --gray: #6B7280;
-    --gray-light: #F5F5F3;
+    --gray-light: #F0F0EE;
     --text: #1A1A1A;
     --border: #E5E7EB;
     --white: #FFFFFF;
-    --radius: 14px;
+    --radius: 16px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body {
@@ -26,95 +26,73 @@
     background: #F7F8F5;
     color: var(--text);
     min-height: 100vh;
-    padding-bottom: 48px;
+    padding-bottom: 56px;
   }
 
-  /* ── Mode select screen ── */
-  .mode-screen {
+  /* ── 開始畫面 ── */
+  .start-screen {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 32px 24px;
-  }
-  .mode-logo {
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: var(--gray);
-    margin-bottom: 24px;
+    padding: 32px 20px;
     text-align: center;
   }
-  .mode-title {
-    font-size: 24px;
-    font-weight: 700;
-    text-align: center;
-    line-height: 1.4;
-    margin-bottom: 8px;
+  .start-logo {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px;
   }
-  .mode-sub {
-    font-size: 14px;
-    color: var(--gray);
-    text-align: center;
-    margin-bottom: 36px;
-    line-height: 1.7;
-  }
-  .mode-card {
-    border-radius: var(--radius);
-    padding: 22px 20px;
+  .start-tag {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 20px;
     margin-bottom: 14px;
+  }
+  .start-title { font-size: 26px; font-weight: 700; line-height: 1.35; margin-bottom: 10px; }
+  .start-desc { font-size: 16px; color: var(--gray); line-height: 1.75; margin-bottom: 32px; }
+  .mode-cards { width: 100%; display: flex; flex-direction: column; gap: 12px; max-width: 400px; }
+  .mode-card {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 20px;
     cursor: pointer;
-    transition: transform 0.15s;
-    border: 2px solid transparent;
+    text-align: left;
+    transition: all 0.18s;
+    font-family: inherit;
+    width: 100%;
   }
   .mode-card:active { transform: scale(0.98); }
-  .mode-card.pre {
-    background: var(--amber-light);
-    border-color: var(--amber);
-  }
-  .mode-card.post {
-    background: var(--green-light);
-    border-color: var(--green);
-  }
-  .mode-card-tag {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-  .mode-card.pre .mode-card-tag { color: var(--amber); }
-  .mode-card.post .mode-card-tag { color: var(--green); }
-  .mode-card-title {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .mode-card-desc {
-    font-size: 13px;
-    color: var(--gray);
-    line-height: 1.65;
-  }
-  .mode-arrow {
-    float: right;
+  .mode-card.pre { border-color: var(--amber); }
+  .mode-card.post { border-color: var(--green); }
+  .mode-icon { font-size: 24px; margin-bottom: 8px; }
+  .mode-label {
     font-size: 18px;
-    margin-top: -2px;
+    font-weight: 700;
+    margin-bottom: 4px;
   }
-  .mode-hint {
-    text-align: center;
-    font-size: 12px;
-    color: var(--gray);
-    margin-top: 8px;
-    line-height: 1.6;
-  }
+  .mode-card.pre .mode-label { color: #8A5A00; }
+  .mode-card.post .mode-label { color: var(--green); }
+  .mode-hint { font-size: 14px; color: var(--gray); line-height: 1.6; }
 
   /* ── Header ── */
   .header {
+    background: var(--green);
     color: white;
-    padding: 20px 20px 30px;
+    padding: 18px 20px 28px;
     position: relative;
     overflow: hidden;
   }
-  .header.pre-mode { background: #B87D1A; }
-  .header.post-mode { background: var(--green); }
+  .header.pre-mode { background: #A06A00; }
   .header::after {
     content: '';
     position: absolute;
@@ -127,43 +105,44 @@
     display: inline-block;
     background: rgba(255,255,255,0.2);
     color: white;
-    font-size: 11px;
-    padding: 3px 10px;
+    font-size: 12px;
+    padding: 3px 12px;
     border-radius: 20px;
     margin-bottom: 8px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
-  .header h1 { font-size: 20px; font-weight: 700; line-height: 1.4; }
-  .header p { font-size: 13px; opacity: 0.85; margin-top: 6px; }
+  .header h1 { font-size: 22px; font-weight: 700; line-height: 1.3; }
+  .header p { font-size: 14px; opacity: 0.85; margin-top: 6px; }
 
   /* ── Progress ── */
   .progress-wrap { padding: 16px 20px 8px; }
   .progress-bar-bg {
     background: var(--border);
     border-radius: 99px;
-    height: 6px;
+    height: 7px;
     overflow: hidden;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
   .progress-bar-fill {
+    background: var(--green);
     height: 100%;
     border-radius: 99px;
     transition: width 0.4s ease;
   }
-  .progress-bar-fill.pre-mode { background: var(--amber); }
-  .progress-bar-fill.post-mode { background: var(--green); }
+  .pre-mode-active .progress-bar-fill { background: var(--amber); }
   .progress-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--gray);
   }
-  .dot-row { display: flex; gap: 5px; flex-wrap: wrap; }
-  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+  .dot-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); transition: background 0.2s; }
+  .dot.done { background: var(--green); }
   .dot.done-pre { background: var(--amber); }
-  .dot.done-post { background: var(--green); }
-  .dot.current { background: #999; }
+  .dot.current { background: var(--amber); }
+  .dot.current-post { background: var(--green); }
 
   /* ── Question card ── */
   .q-wrap { padding: 8px 16px; }
@@ -171,137 +150,143 @@
     background: var(--white);
     border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.07);
   }
-  .q-top { padding: 18px 18px 14px; border-bottom: 1px solid var(--border); }
+  .q-top {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+  }
   .q-badge {
     display: inline-block;
-    font-size: 11px;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px;
     font-weight: 500;
-    padding: 3px 10px;
+    padding: 4px 12px;
     border-radius: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  .q-badge.pre-mode { background: var(--amber-light); color: #7A4E00; }
-  .q-badge.post-mode { background: var(--green-light); color: var(--green); }
-  .q-text { font-size: 16px; font-weight: 500; line-height: 1.75; color: var(--text); }
-
-  .q-opts { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .pre-mode-active .q-badge { background: var(--amber-light); color: #7A4800; }
+  .q-text {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .q-opts { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
   .opt-btn {
     width: 100%;
     text-align: left;
-    padding: 13px 14px;
+    padding: 16px 16px;
     border: 1.5px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     background: var(--white);
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text);
     cursor: pointer;
     font-family: inherit;
-    line-height: 1.55;
+    line-height: 1.6;
     transition: all 0.15s;
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
   }
   .opt-btn:active { transform: scale(0.98); }
   .opt-letter {
     display: inline-flex;
-    min-width: 22px; height: 22px;
+    min-width: 26px; height: 26px;
     border-radius: 50%;
     background: var(--gray-light);
     color: var(--gray);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     align-items: center;
     justify-content: center;
-    margin-top: 1px;
+    margin-top: 2px;
     flex-shrink: 0;
     transition: all 0.15s;
   }
-
-  /* pre-mode: selected but no right/wrong color */
-  .opt-btn.selected-pre { border-color: var(--amber); background: var(--amber-light); }
-  .opt-btn.selected-pre .opt-letter { background: var(--amber); color: white; }
-
-  /* post-mode: show right/wrong */
+  .opt-btn.selected { border-color: var(--amber); background: var(--amber-light); }
+  .opt-btn.selected .opt-letter { background: var(--amber); color: white; }
   .opt-btn.correct { border-color: var(--green); background: var(--green-light); }
   .opt-btn.correct .opt-letter { background: var(--green); color: white; }
   .opt-btn.wrong { border-color: var(--red); background: var(--red-light); }
   .opt-btn.wrong .opt-letter { background: var(--red); color: white; }
   .opt-btn.disabled { pointer-events: none; opacity: 0.6; }
-  .opt-btn.correct.disabled, .opt-btn.wrong.disabled, .opt-btn.selected-pre.disabled { opacity: 1; }
+  .opt-btn.correct.disabled, .opt-btn.wrong.disabled, .opt-btn.selected.disabled { opacity: 1; }
 
-  /* explain box — only in post mode */
+  /* ── Explain ── */
   .explain-box {
-    margin: 0 14px 14px;
+    margin: 0 16px 16px;
     background: var(--green-light);
     border-left: 3px solid var(--green);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-size: 13px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 15px;
     color: #1A4A30;
-    line-height: 1.75;
+    line-height: 1.8;
     display: none;
   }
   .explain-box.show { display: block; }
-  .explain-label { font-weight: 700; margin-bottom: 4px; font-size: 11px; letter-spacing: 0.5px; color: var(--green); }
+  .explain-label { font-weight: 700; margin-bottom: 6px; font-size: 12px; letter-spacing: 0.5px; color: var(--green); }
 
-  /* nav */
+  /* ── Nav ── */
   .nav-wrap { padding: 14px 16px; display: flex; gap: 10px; }
   .nav-btn {
-    flex: 1; padding: 14px;
-    border-radius: 10px; border: none;
-    font-size: 15px; font-weight: 500;
-    font-family: inherit; cursor: pointer;
+    flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
     transition: all 0.15s;
   }
   .nav-btn:active { transform: scale(0.97); }
   .nav-prev { background: var(--white); border: 1.5px solid var(--border); color: var(--gray); }
-  .nav-next.pre-mode { background: var(--amber); color: white; }
-  .nav-next.post-mode { background: var(--green); color: white; }
+  .nav-next { background: var(--green); color: white; }
+  .pre-mode-active .nav-next { background: var(--amber); }
 
-  /* ── Score screen ── */
-  .score-screen { display: none; padding: 16px; }
+  /* ── Score ── */
+  .score-screen { display: none; padding: 20px 16px; }
   .score-screen.show { display: block; }
   .score-card {
     background: var(--white);
     border-radius: var(--radius);
-    padding: 28px 20px;
+    padding: 32px 20px;
     text-align: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 14px rgba(0,0,0,0.07);
     margin-bottom: 16px;
   }
   .score-circle {
-    width: 110px; height: 110px;
+    width: 120px; height: 120px;
     border-radius: 50%;
+    background: var(--green-light);
+    border: 4px solid var(--green);
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 18px;
+    margin: 0 auto 20px;
     flex-direction: column;
   }
-  .score-circle.pre-mode { background: var(--amber-light); border: 4px solid var(--amber); }
-  .score-circle.post-mode { background: var(--green-light); border: 4px solid var(--green); }
-  .score-num { font-size: 36px; font-weight: 700; line-height: 1; }
-  .score-num.pre-mode { color: var(--amber); }
-  .score-num.post-mode { color: var(--green); }
-  .score-denom { font-size: 14px; color: var(--gray); margin-top: 2px; }
-  .score-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .score-desc { font-size: 14px; color: var(--gray); line-height: 1.75; }
-
-  /* pre-mode score: big note box */
+  .score-circle.pre { background: var(--amber-light); border-color: var(--amber); }
+  .score-num { font-size: 40px; font-weight: 700; color: var(--green); line-height: 1; }
+  .score-circle.pre .score-num { color: #8A5A00; }
+  .score-denom { font-size: 15px; color: var(--gray); margin-top: 2px; }
+  .score-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .score-desc { font-size: 15px; color: var(--gray); line-height: 1.8; }
   .pre-note {
     background: var(--amber-light);
     border: 1.5px solid var(--amber);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 16px 18px;
-    font-size: 14px;
+    font-size: 15px;
+    color: #7A4800;
     line-height: 1.75;
-    color: #5C3D00;
     margin-bottom: 16px;
+    text-align: center;
   }
-  .pre-note strong { display: block; font-size: 13px; font-weight: 700; color: var(--amber); margin-bottom: 6px; letter-spacing: 0.5px; }
-
-  .section-label { font-size: 12px; font-weight: 700; color: var(--gray); margin: 16px 0 8px; letter-spacing: 0.5px; }
+  .pre-note strong { font-size: 22px; display: block; margin-bottom: 4px; }
+  .section-label { font-size: 13px; font-weight: 700; color: var(--gray); margin: 16px 0 8px; letter-spacing: 0.5px; }
   .review-list { display: flex; flex-direction: column; gap: 10px; }
   .review-item {
     background: var(--white);
@@ -312,66 +297,65 @@
   }
   .review-item.ok { border-color: var(--green); }
   .review-item.fail { border-color: var(--red); }
-  .review-item.answered { border-color: var(--amber); }
-  .review-num { font-size: 11px; color: var(--gray); margin-bottom: 4px; }
-  .review-q { font-size: 13px; font-weight: 500; line-height: 1.5; margin-bottom: 6px; }
-  .review-tag {
-    display: inline-block; font-size: 11px;
-    padding: 2px 8px; border-radius: 20px; font-weight: 500;
-  }
+  .review-num { font-size: 12px; color: var(--gray); margin-bottom: 4px; }
+  .review-q { font-size: 14px; font-weight: 500; line-height: 1.55; margin-bottom: 6px; }
+  .review-tag { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
   .review-tag.ok { background: var(--green-light); color: var(--green); }
   .review-tag.fail { background: var(--red-light); color: var(--red); }
-  .review-tag.answered { background: var(--amber-light); color: #7A4E00; }
 
-  .bottom-btn {
-    width: 100%; padding: 15px;
-    border: none; border-radius: 10px;
-    font-size: 15px; font-weight: 500;
-    font-family: inherit; cursor: pointer;
-    margin-top: 14px;
+  .action-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 12px;
   }
-  .bottom-btn.pre-mode { background: var(--amber); color: white; }
-  .bottom-btn.post-mode { background: var(--green); color: white; }
-  .bottom-btn.ghost { background: var(--white); border: 1.5px solid var(--border); color: var(--gray); margin-top: 10px; }
+  .btn-green { background: var(--green); color: white; }
+  .btn-outline { background: var(--white); border: 1.5px solid var(--border); color: var(--gray); }
+
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
 
-<!-- ── MODE SELECT ── -->
-<div class="mode-screen" id="mode-screen">
-  <div class="mode-logo">新北市社區培力育成中心</div>
-  <div class="mode-title">優勢觀點測驗</div>
-  <div class="mode-sub">請依照現在的上課進度<br>選擇對應的模式</div>
-
-  <div class="mode-card pre" onclick="startMode('pre')">
-    <div class="mode-card-tag">上課前 <span class="mode-arrow">→</span></div>
-    <div class="mode-card-title">診斷模式</div>
-    <div class="mode-card-desc">作答完只看分數，不顯示對錯答案。<br>測出你目前真實的思維傾向。</div>
+<!-- ── 開始畫面 ── -->
+<div id="start-screen" class="start-screen">
+  <div class="start-logo">🌱</div>
+  <div class="start-tag">新北市社區培力育成中心</div>
+  <h1 class="start-title">你有沒有<br>優勢觀點？</h1>
+  <p class="start-desc">共 10 題情境選擇題<br>選出你認為最合適的做法</p>
+  <div class="mode-cards">
+    <button class="mode-card pre" onclick="startQuiz('pre')">
+      <div class="mode-icon">📝</div>
+      <div class="mode-label">上課前測驗</div>
+      <div class="mode-hint">作答完只看分數，不顯示對錯<br>請記下你的分數，上課後再來比較！</div>
+    </button>
+    <button class="mode-card post" onclick="startQuiz('post')">
+      <div class="mode-icon">✅</div>
+      <div class="mode-label">上課後測驗</div>
+      <div class="mode-hint">每題作答後立即顯示對錯與說明<br>看看你的思維有沒有改變</div>
+    </button>
   </div>
-
-  <div class="mode-card post" onclick="startMode('post')">
-    <div class="mode-card-tag">上課後 <span class="mode-arrow">→</span></div>
-    <div class="mode-card-title">學習模式</div>
-    <div class="mode-card-desc">每答一題立即看對錯與解說。<br>對照看看你的思維有沒有改變！</div>
-  </div>
-
-  <div class="mode-hint">上課前記下你的分數<br>上課後再測一次，看看進步了多少 🌱</div>
 </div>
 
-<!-- ── QUIZ ── -->
-<div id="quiz-section" style="display:none;">
+<!-- ── 測驗畫面 ── -->
+<div id="quiz-screen" class="hidden">
   <div class="header" id="quiz-header">
-    <div class="header-tag" id="header-tag"></div>
-    <h1 id="header-title"></h1>
+    <div class="header-tag" id="mode-tag"></div>
+    <h1>你有沒有優勢觀點？</h1>
     <p id="header-sub"></p>
   </div>
 
-  <div class="progress-wrap">
+  <div class="progress-wrap" id="progress-wrap">
     <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="prog-fill" style="width:8.33%"></div>
+      <div class="progress-bar-fill" id="prog-fill"></div>
     </div>
     <div class="progress-meta">
-      <span id="prog-label">第 1 題 / 共 12 題</span>
+      <span id="prog-label"></span>
       <div class="dot-row" id="dot-row"></div>
     </div>
   </div>
@@ -396,32 +380,29 @@
   </div>
 </div>
 
-<!-- ── SCORE ── -->
-<div class="score-screen" id="score-section">
-  <div class="score-card">
+<!-- ── 成績畫面 ── -->
+<div id="score-screen" class="score-screen">
+  <!-- 前測專用提示 -->
+  <div class="pre-note hidden" id="pre-note">
+    <strong id="pre-score-big"></strong>
+    請把這個分數記下來 📝<br>上課結束後再來測一次，看看你的思維改變了多少！
+  </div>
+  <!-- 後測成績卡 -->
+  <div class="score-card" id="score-card">
     <div class="score-circle" id="score-circle">
       <span class="score-num" id="final-score">0</span>
-      <span class="score-denom">/12</span>
+      <span class="score-denom">/10</span>
     </div>
     <div class="score-title" id="score-title"></div>
     <div class="score-desc" id="score-desc"></div>
   </div>
-
-  <div id="pre-note-wrap" style="display:none;">
-    <div class="pre-note">
-      <strong id="pre-diagnosis"></strong>
-      <div id="pre-diagnosis-desc" style="margin-bottom:10px;"></div>
-      這不代表好壞，而是幫助你認識自己現在的思維習慣。上課結束後切換到「學習模式」重新作答，看看你的思維有沒有改變！
-    </div>
-  </div>
-
-  <div id="review-wrap">
-    <div class="section-label" id="review-label"></div>
+  <!-- 後測逐題回顧 -->
+  <div id="review-wrap" class="hidden">
+    <div class="section-label">逐題回顧</div>
     <div class="review-list" id="review-list"></div>
   </div>
 
-  <button class="bottom-btn" id="restart-btn" onclick="goMode()"></button>
-  <button class="bottom-btn ghost" onclick="backToMode()">換模式重新作答</button>
+  <button class="action-btn btn-green" onclick="goHome()">回到首頁，再測一次</button>
 </div>
 
 <script>
@@ -429,112 +410,147 @@ const questions = [
   {
     badge: "社區發展方向",
     q: "理事長說：「我們社區問題一堆，要先把問題解決完才能談發展。」你怎麼看？",
-    opts: ["對，問題不解決，發展只是空談","可以邊解決問題邊發展，兩者不衝突","先盤點社區有什麼能量，從優勢出發同時回應問題","直接跳過問題，專注發展就好"],
-    ans: 2,
+    opts: [
+      "對，問題不解決，發展只是空談",
+      "先盤點社區有什麼能量，從優勢出發同時回應問題",
+      "直接跳過問題，專注發展就好"
+    ],
+    ans: 1,
     explain: "優勢觀點不是要逃避問題，而是不讓問題成為唯一的出發點。社區的能量與資源是發展的基礎，從這裡出發，問題自然也能被一起回應。"
   },
   {
-    badge: "小人數的力量",
+    badge: "少數人的力量",
     q: "社區辦活動只來了三個志工，幹部說「這樣不夠，根本辦不起來」。你的看法？",
-    opts: ["同意，人太少活動品質一定差","先取消，等人夠再辦","找外部志工補充人力","三個願意投入的人就是起點，設計適合小團隊的活動"],
-    ans: 3,
+    opts: [
+      "同意，人太少活動品質一定差",
+      "先取消，等人夠再辦",
+      "三個願意投入的人就是起點，設計適合小團隊的活動"
+    ],
+    ans: 2,
     explain: "即使資源少，有人願意投入就是一種力量。優勢觀點鼓勵我們從現有的能量出發，而不是用「缺乏」來定義自己。"
   },
   {
     badge: "沒有經費怎麼辦",
     q: "社區想辦長者共餐，但帳戶裡沒有太多錢。你會怎麼做？",
-    opts: ["放棄，沒錢什麼都做不了","等下次有補助再說","盤點社區現有的空間、人脈與食材，先辦一個零成本的小聚","馬上寫計畫書申請補助"],
+    opts: [
+      "放棄，沒錢什麼都做不了",
+      "等下次有補助再說",
+      "先辦理一場零成本的聚會，盤點社區有的空間、人脈與食材"
+    ],
     ans: 2,
     explain: "資源不只是錢，人、空間、時間、技能、關係都是資本。優勢觀點幫助我們看見手邊現有的，而不是被「沒有錢」這個框架困住。"
   },
   {
     badge: "參與人數與凝聚力",
     q: "理事長嘆氣：「每次活動就那幾個人，代表大家根本不在乎社區。」你怎麼回應？",
-    opts: ["同意，參與人少就是凝聚力差的證明","要在群組裡公告催人來","那幾個常來的人正是社區核心，先從他們出發，設計更容易加入的小任務","辦更多活動讓大家沒藉口不來"],
-    ans: 2,
+    opts: [
+      "同意，參與人少就是凝聚力差的證明",
+      "那幾個常來的人正是社區核心，先從他們出發，設計更容易加入的小任務",
+      "辦更多活動讓大家沒藉口不來"
+    ],
+    ans: 1,
     explain: "人手不足不代表凝聚力薄弱。願意固定來的人就是社區的核心能量，從他們出發，慢慢降低加入門檻，才能帶動更多人。"
-  },
-  {
-    badge: "自主行動",
-    q: "社區的桌子跟椅子壞了好幾張，有人說「這要等公所來處理」。用優勢觀點，你會？",
-    opts: ["對，這是政府責任，等就好","寫陳情書要求議員處理","先看看社區有沒有會修繕的居民或工具，能做的先自己來","假裝沒看見"],
-    ans: 2,
-    explain: "社區有能力運用自身資源解決問題，不必事事等候公部門。先做能做的，同時反映問題，才是真正的自主行動。"
   },
   {
     badge: "多元參與方式",
     q: "隔壁阿姨從不參加社區活動，但你發現她每天默默幫忙澆公共花圃的花。這位阿姨是？",
-    opts: ["不算社區參與，來活動才算","應該被說服來參加活動","用她自己的方式貢獻，是值得被看見的社區力量","跟活動沒關係，不用在意"],
-    ans: 2,
+    opts: [
+      "不算社區參與，來活動才算",
+      "用她自己的方式貢獻，是值得被看見的社區力量",
+      "跟活動沒關係，不用在意"
+    ],
+    ans: 1,
     explain: "參與社區的方式很多，不是只有來活動才算。默默澆花的阿姨，用她的方式在關心社區，這正是優勢觀點要我們去看見的。"
-  },
-  {
-    badge: "批評者的價值",
-    q: "一位居民常常批評社區活動辦得不好。幹部說「他就是來鬧的，不用理他」。你覺得？",
-    opts: ["同意，負面的人不理就好","忽略他，繼續辦自己的","讓他來幫忙，看他還說不說","願意批評代表他在乎社區，可以邀他說出具體想法，轉化為建設性意見"],
-    ans: 3,
-    explain: "有人在批評，代表他在意社區。冷漠才是最危險的。優勢觀點幫助我們把批評者視為潛在的夥伴，而不是麻煩製造者。"
   },
   {
     badge: "空間資源再定義",
     q: "社區裡有一個多年閒置的倉庫，大家都覺得是麻煩。用優勢觀點，你怎麼看？",
-    opts: ["趕快請公部門拆掉","圍起來不要管","申請補助整修後交回公部門管理","這是社區可以自主活化的空間資產，居民一起討論可以變成什麼"],
-    ans: 3,
+    opts: [
+      "趕快請公部門拆掉",
+      "申請補助整修後交回公部門管理",
+      "這是社區可以自主活化的空間資產，居民一起討論可以變成什麼"
+    ],
+    ans: 2,
     explain: "閒置空間不是負擔，而是還沒被激活的資產。倉庫可以變成共學空間、共餐場地、共享書屋……由居民共同定義，才是在地發展的精神。"
   },
   {
     badge: "社區自主定義",
     q: "社會局建議社區今年以「高齡友善」為主題發展。理事長說「好，那我們就照這個方向做」。這樣的態度符合優勢觀點嗎？",
-    opts: ["符合，配合政府方向才能拿到資源","不一定，應先問居民社區真正需要什麼","完全不符合，不應該接受任何外部建議","無所謂，方向都一樣"],
+    opts: [
+      "符合，配合政府方向才能拿到資源",
+      "不一定，應先問居民社區真正需要什麼",
+      "無所謂，方向都一樣"
+    ],
     ans: 1,
     explain: "社區的發展方向應由居民共同定義，而不是直接承接政府設定好的目標。優勢觀點強調居民的主體性，我們的願景是自己的，不是政府要我們完成的專案。"
   },
   {
     badge: "年輕人與社區",
     q: "社區活動年輕人幾乎都不來，幹部說「他們對社區根本沒興趣」。你的優勢觀點詮釋是？",
-    opts: ["同意，年輕人本來就不關心社區","強制里內年輕人要參加","辦網紅活動吸引他們","先了解年輕人用什麼方式在意社區，也許他們正在用不同的管道貢獻"],
-    ans: 3,
+    opts: [
+      "同意，年輕人本來就不關心社區",
+      "辦網紅活動吸引他們",
+      "先了解年輕人用什麼方式在意社區，也許他們正在用不同的管道貢獻"
+    ],
+    ans: 2,
     explain: "不參加活動不等於不關心社區。也許他們在線上分享社區資訊、默默幫助鄰居。優勢觀點幫我們看見不同形式的參與，而不是用單一標準評斷。"
   },
   {
     badge: "別只靠一個人",
     q: "社區裡有位阿美姐，超熱心什麼都做，大家都靠她。但最近她說身體不好要休息一陣子，社區頓時不知道怎麼辦。這個狀況告訴我們什麼？",
-    opts: ["阿美姐真的很重要，要趕快說服她繼續撐著","馬上找一個跟阿美姐一樣熱心的人來接替","這很正常，每個社區都要靠一兩個人撐","平時就該讓更多人一起參與，不能只靠一個人，這樣社區才不會因為一個人離開就停擺"],
-    ans: 3,
+    opts: [
+      "阿美姐真的很重要，要趕快說服她繼續撐著",
+      "馬上找一個跟阿美姐一樣熱心的人來接替",
+      "平時就該讓更多人一起參與，不能只靠一個人，這樣社區才不會因為一個人離開就停擺"
+    ],
+    ans: 2,
     explain: "熱心的人是社區的寶，但優勢觀點提醒我們要建立集體的能量，而不是依賴單一關鍵人。讓更多人參與、分擔，社區才有持續的韌性。"
   },
   {
     badge: "沒有計畫書怎麼辦",
     q: "幹部說：「我們社區沒人會寫計畫書，所以什麼補助都申請不到。」用優勢觀點，你的回應是？",
-    opts: ["那就找外面的顧問來寫","放棄補助，社區做不了大事","送幹部去上計畫書撰寫課","先從不需要計畫書的小行動累積成果，展示社區能量才是最好的申請基礎"],
-    ans: 3,
+    opts: [
+      "那就找外面的顧問來寫",
+      "放棄補助，社區做不了大事",
+      "先從不需要計畫書的小行動累積成果，展示社區能量才是最好的申請基礎"
+    ],
+    ans: 2,
     explain: "不會寫計畫書不代表做不了事。優勢觀點鼓勵我們從現有能力出發，先創造小行動、累積真實成果，有了故事才有更強的申請底氣。"
   }
 ];
 
-let mode = 'pre'; // 'pre' or 'post'
+let mode = 'post'; // 'pre' or 'post'
 let idx = 0;
 let answered = new Array(questions.length).fill(null);
 let score = 0;
 
-function startMode(m) {
+function startQuiz(m) {
   mode = m;
   idx = 0;
-  answered = new Array(questions.length).fill(null);
   score = 0;
+  answered = new Array(questions.length).fill(null);
 
-  document.getElementById('mode-screen').style.display = 'none';
-  document.getElementById('quiz-section').style.display = 'block';
-  document.getElementById('score-section').classList.remove('show');
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('score-screen').classList.remove('show');
+  document.getElementById('quiz-screen').classList.remove('hidden');
 
   const header = document.getElementById('quiz-header');
-  header.className = 'header ' + mode + '-mode';
-  document.getElementById('header-tag').textContent = mode === 'pre' ? '上課前・診斷模式' : '上課後・學習模式';
-  document.getElementById('header-title').textContent = mode === 'pre' ? '你有優勢觀點嗎？' : '優勢觀點再挑戰';
-  document.getElementById('header-sub').textContent = mode === 'pre' ? '共 12 題・先測測看你現在的思維' : '共 12 題・答完立即看解說';
+  const progressWrap = document.getElementById('progress-wrap');
+  const nextBtn = document.getElementById('next-btn');
 
-  document.getElementById('prog-fill').className = 'progress-bar-fill ' + mode + '-mode';
-  document.getElementById('next-btn').className = 'nav-btn nav-next ' + mode + '-mode';
+  if (mode === 'pre') {
+    header.classList.add('pre-mode');
+    progressWrap.classList.add('pre-mode-active');
+    document.getElementById('mode-tag').textContent = '上課前測驗';
+    document.getElementById('header-sub').textContent = '共 10 題・作答後只看分數';
+    nextBtn.style.background = '#E8971A';
+  } else {
+    header.classList.remove('pre-mode');
+    progressWrap.classList.remove('pre-mode-active');
+    document.getElementById('mode-tag').textContent = '上課後測驗';
+    document.getElementById('header-sub').textContent = '共 10 題・作答後立即看說明';
+    nextBtn.style.background = '';
+  }
 
   initDots();
   render();
@@ -547,21 +563,26 @@ function initDots() {
 
 function render() {
   const d = questions[idx];
-  const badge = document.getElementById('q-badge');
-  badge.textContent = d.badge;
-  badge.className = 'q-badge ' + mode + '-mode';
+  const isPreMode = mode === 'pre';
+
+  document.getElementById('q-badge').textContent = d.badge;
   document.getElementById('q-text').textContent = d.q;
+
+  // badge color
+  const badge = document.getElementById('q-badge');
+  badge.style.background = isPreMode ? '#FEF3DC' : '';
+  badge.style.color = isPreMode ? '#7A4800' : '';
 
   const opts = document.getElementById('q-opts');
   opts.innerHTML = d.opts.map((o, i) => {
     let cls = 'opt-btn';
     if (answered[idx] !== null) {
       cls += ' disabled';
-      if (mode === 'post') {
+      if (!isPreMode) {
         if (i === d.ans) cls += ' correct';
         else if (i === answered[idx] && i !== d.ans) cls += ' wrong';
       } else {
-        if (i === answered[idx]) cls += ' selected-pre';
+        if (i === answered[idx]) cls += ' selected';
       }
     }
     return `<button class="${cls}" onclick="answer(${i})">
@@ -572,19 +593,26 @@ function render() {
 
   const explain = document.getElementById('explain-box');
   document.getElementById('explain-text').textContent = d.explain;
-  if (mode === 'post' && answered[idx] !== null) explain.classList.add('show');
+  if (answered[idx] !== null && !isPreMode) explain.classList.add('show');
   else explain.classList.remove('show');
 
   const pct = ((idx + 1) / questions.length * 100).toFixed(1);
   document.getElementById('prog-fill').style.width = pct + '%';
   document.getElementById('prog-label').textContent = `第 ${idx+1} 題 / 共 ${questions.length} 題`;
 
-  document.getElementById('next-btn').textContent = idx === questions.length - 1 ? '查看成績 →' : '下一題 →';
+  const nextBtn = document.getElementById('next-btn');
+  nextBtn.textContent = idx === questions.length - 1 ? '查看成績 →' : '下一題 →';
 
   questions.forEach((_, i) => {
     const dot = document.getElementById('dot'+i);
     if (!dot) return;
-    dot.className = 'dot' + (answered[i] !== null ? ' done-' + mode : (i === idx ? ' current' : ''));
+    if (answered[i] !== null) {
+      dot.className = isPreMode ? 'dot done-pre' : 'dot done';
+    } else if (i === idx) {
+      dot.className = 'dot current';
+    } else {
+      dot.className = 'dot';
+    }
   });
 }
 
@@ -602,77 +630,63 @@ function goQ(d) {
 }
 
 function showScore() {
-  document.getElementById('quiz-section').style.display = 'none';
-  const ss = document.getElementById('score-section');
+  document.getElementById('quiz-screen').classList.add('hidden');
+  const ss = document.getElementById('score-screen');
   ss.classList.add('show');
+  document.getElementById('final-score').textContent = score;
 
-  const circle = document.getElementById('score-circle');
-  circle.className = 'score-circle ' + mode + '-mode';
-  const num = document.getElementById('final-score');
-  num.className = 'score-num ' + mode + '-mode';
-  num.textContent = score;
+  const isPreMode = mode === 'pre';
+  const preNote = document.getElementById('pre-note');
+  const reviewWrap = document.getElementById('review-wrap');
+  const scoreCircle = document.getElementById('score-circle');
 
-  const btn = document.getElementById('restart-btn');
-  btn.className = 'bottom-btn ' + mode + '-mode';
-
-  let title, desc;
-  const pct = score / questions.length;
-  if (mode === 'pre') {
-    if (score >= 9) {
-      title = '🟢 目前較偏向優勢觀點思維';
-      desc = '你已經很自然地用優勢視角看待社區！上完課後再測一次，看看有什麼新發現。';
-    } else if (score >= 5) {
-      title = '🟡 問題導向與優勢觀點各半';
-      desc = '你的思維正在轉換中，有時從問題出發，有時也能看見優勢。今天的課程會幫你看得更清楚！';
-    } else {
-      title = '🔴 目前較偏向問題導向思維';
-      desc = '問題導向是很多人自然的思維習慣，這完全正常。今天的課程就是幫助你練習換一個視角！';
-    }
-    document.getElementById('pre-note-wrap').style.display = 'block';
-    document.getElementById('pre-diagnosis').textContent = '📝 請記下你的分數與診斷結果！';
-    document.getElementById('pre-diagnosis-desc').textContent = title + '　' + desc;
-    document.getElementById('review-label').textContent = '你的作答紀錄';
-    btn.textContent = '重新作答';
-    btn.onclick = () => startMode('pre');
+  if (isPreMode) {
+    // 前測：只顯示分數提示，不顯示對錯說明
+    preNote.classList.remove('hidden');
+    document.getElementById('pre-score-big').textContent = `我的分數：${score} / 10`;
+    reviewWrap.classList.add('hidden');
+    scoreCircle.classList.add('pre');
+    document.getElementById('score-title').textContent = '先記下這個分數！';
+    document.getElementById('score-desc').textContent = '上課結束後再來測一次「上課後測驗」，看看你的思維改變了多少 🌱';
   } else {
-    if (pct >= 0.917) { title = '優勢觀點達人！'; desc = '你已經非常自然地用優勢視角看待社區。把這個思維帶回去，讓更多夥伴一起感受！'; }
-    else if (pct >= 0.667) { title = '優勢思維開花中 🌱'; desc = '你對優勢觀點有不錯的掌握！繼續練習，遇到社區困境時先問「我們有什麼」。'; }
-    else if (pct >= 0.417) { title = '思維翻轉進行中'; desc = '問題導向的習慣很自然，慢慢練習從資源與可能性出發，會愈來愈有感！'; }
-    else { title = '繼續練習！'; desc = '沒關係，思維改變需要時間。回顧每題的說明，慢慢把優勢觀點帶進日常工作中。'; }
-    document.getElementById('pre-note-wrap').style.display = 'none';
-    document.getElementById('review-label').textContent = '逐題回顧';
-    btn.textContent = '重新挑戰';
-    btn.onclick = () => startMode('post');
-  }
-  document.getElementById('score-title').textContent = title;
-  document.getElementById('score-desc').textContent = desc;
+    // 後測：顯示成績等級與逐題回顧
+    preNote.classList.add('hidden');
+    reviewWrap.classList.remove('hidden');
+    scoreCircle.classList.remove('pre');
 
-  const list = document.getElementById('review-list');
-  list.innerHTML = questions.map((q, i) => {
-    const ok = answered[i] === q.ans;
-    let itemCls, tagCls, tagText;
-    if (mode === 'pre') {
-      itemCls = 'review-item answered';
-      tagCls = 'review-tag answered';
-      tagText = '已作答';
+    let title, desc;
+    const pct = score / questions.length;
+    if (pct >= 0.9) {
+      title = '優勢觀點達人！';
+      desc = '你已經非常自然地用優勢視角看待社區。把這個思維帶回去，讓更多夥伴一起感受！';
+    } else if (pct >= 0.7) {
+      title = '優勢思維開花中 🌱';
+      desc = '你對優勢觀點有不錯的掌握！繼續練習換句話說，遇到社區困境時先問「我們有什麼」而不是「我們缺什麼」。';
+    } else if (pct >= 0.5) {
+      title = '思維翻轉進行中';
+      desc = '問題導向的習慣很自然，這是長期訓練的結果。慢慢練習從資源與可能性出發，會愈來愈有感！';
     } else {
-      itemCls = 'review-item ' + (ok ? 'ok' : 'fail');
-      tagCls = 'review-tag ' + (ok ? 'ok' : 'fail');
-      tagText = ok ? '✓ 答對' : '✗ 再想想';
+      title = '重新認識優勢觀點';
+      desc = '沒關係，這正是今天課程的起點！回顧每題的說明，會幫助你建立新的思維框架。';
     }
-    return `<div class="${itemCls}">
-      <div class="review-num">第 ${i+1} 題・${q.badge}</div>
-      <div class="review-q">${q.q}</div>
-      <span class="${tagCls}">${tagText}</span>
-    </div>`;
-  }).join('');
+    document.getElementById('score-title').textContent = title;
+    document.getElementById('score-desc').textContent = desc;
+
+    const list = document.getElementById('review-list');
+    list.innerHTML = questions.map((q, i) => {
+      const ok = answered[i] === q.ans;
+      return `<div class="review-item ${ok?'ok':'fail'}">
+        <div class="review-num">第 ${i+1} 題・${q.badge}</div>
+        <div class="review-q">${q.q}</div>
+        <span class="review-tag ${ok?'ok':'fail'}">${ok ? '✓ 答對' : '✗ 再想想'}</span>
+      </div>`;
+    }).join('');
+  }
 }
 
-function goMode() {}
-function backToMode() {
-  document.getElementById('score-section').classList.remove('show');
-  document.getElementById('quiz-section').style.display = 'none';
-  document.getElementById('mode-screen').style.display = 'flex';
+function goHome() {
+  document.getElementById('score-screen').classList.remove('show');
+  document.getElementById('start-screen').classList.remove('hidden');
 }
 </script>
 </body>
